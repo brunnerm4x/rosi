@@ -1,0 +1,5 @@
+
+Frontend:
+nach laden von backup wird nur loading angezeigt bis plugin neu geöffnet wird
+backup button-text wird abgeschnitten (kleiner bildschirm)
+

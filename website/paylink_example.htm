@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ROSI Paylink Examples</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h1>ROSI Paylink Examples</h1>
+	<p>
+		Elements with specified attributes are detected by ROSI-Plugin content script and 
+		allow simple payment links to be used for example to pay for single
+		newspaper articles or use as donation button.<br><br>
+		Please view source-code of this page to see how easy it is to create ROSI-Paylinks!
+	</p>
+	
+	<!-- Description of used attributes:
+	
+		id 	... Not used by rosi, just needed for event handler etc. in website code
+		
+		Necessary attributes:
+			class ... add classname "rosi_paylink" to an element to enable ROSI to detect it
+			data-rosi-provider ... provider name string of payment receiver
+			data-rosi-pay-server ... full URL to ROSI Payment Server of provider
+		
+		Optional attributes:
+			data-rosi-amount 			... def: 0i 	...default Amount that is shown to the user
+			data-rosi-fixed-amount 		... def: false 	... (bool) if true, user cannot change default amount
+			data-rosi-suggested-collateral ... def: -1 (take user settings) ... if a new channel is needed, it is created with that amount if user has not specified something else
+			data-rosi-payment-id 		... def: "NOID" ... payment id, just for your reference
+			data-rosi-pre-init-provider ... def: false 	... (bool) if true, provider will be initialized when site loads (means creating channel in background ...)
+			data-rosi-alert-finished 	... def: true 	... (bool) if true, rosi plugin will alert user whenever a payment for this elment finishes
+			data-rosi-nostyle 			... def: false	... (bool) if true, no css parameters are added to the rosi_paylink element
+			
+		Events:
+			paymentFinished  	... is triggered whenever a payment finishes (successful or not)
+			
+	 -->
+	
+	<!-- Full Example  -->
+	<span  id="paylink1"
+		class="rosi_paylink"					
+		data-rosi-provider="rosipoc01" 
+		data-rosi-pay-server="http://potato.rosipay.net:9000"
+		data-rosi-amount="25i" 
+		data-rosi-fixed-amount="false"
+		data-rosi-suggested-collateral="50i"
+		data-rosi-payment-id="DONATION"
+		data-rosi-pre-init-provider="false"
+		data-rosi-alert-finished="false"
+		data-rosi-nostyle="false"
+	>Full Specified Element</span>
+	<br>
+	<br>
+	
+	<script>
+		document.getElementById("paylink1").addEventListener('paymentFinished', 
+			function(event)
+			{
+				let retval = JSON.parse(event.detail);
+				alert("Payment finished " + (retval.accepted ? 
+						"successfully." : ("with error:" + retval.error)));
+						
+				// Here the payed-for information could be requested from server
+				// (which has to check if payment really happended!!)
+				// ...
+			});
+	</script>
+	
+	
+	<!-- Minimal Example -->
+	<span
+		class="rosi_paylink"					
+		data-rosi-provider="rosipoc01" 
+		data-rosi-pay-server="http://potato.rosipay.net:9000"
+	>Minimal Element</span>
+	<br>
+	<br>	
+	
+	
+	<!-- Button Example -->
+	<input type="button"
+		value="Donate Button"
+		class="rosi_paylink"					
+		data-rosi-provider="rosipoc01" 
+		data-rosi-pay-server="http://potato.rosipay.net:9000"
+		data-rosi-payment-id="DONATION"
+		data-rosi-amount="1ki" 
+		data-rosi-nostyle="true"
+		style="font-weight: bold"
+	></input>
+	<br>
+	<br>	
+</body>
+</html>

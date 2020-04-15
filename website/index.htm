@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ROSI</title>
+<meta charset="utf-8" />
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+<h1>Realtime Online Streaming with IOTA Payments</h1>
+<br>
+<p>
+	<h3>Quicklinks:</h3>
+	<h4><a href="http://potato.rosipay.net:10012/plugin">Download newest ROSI Firefox Addon</a></h4>
+	<h4><a href="http://player.rosipay.net/">Demo Audio Player Page</a></h4>
+	<h4><a href="paylink_example.htm">ROSI-Paylink Example / Demo Page</a></h4>
+	<h4><a href="http://faucet.rosipay.net:10020/">IOTA Faucet for ROSI Testing</a></h4>
+	<h4><a href="https://github.com/brunnerm4x/rosi">ROSI On Github</a></h4>
+</p>
+<br><br>
+<b>ATTENTION: THIS TECHNOLOGY IS A PROTOTYPE - DO NOT USE WITH LARGE AMOUNTS OF IOTA AS THERE MAY
+BE SEVERE BUGS IN THE CODE! AT THIS STAGE IT IS INTENDED FOR DEVELOPERS AND PEOPLE INTERESTED
+IN THE TECHNOLOGY ONLY!</b><br><br>
+<p>
+	<h3>What is ROSI?</h3>
+	ROSI is an novel approach to pay for streaming media.<br>
+	It is designed with the importance of privacy in mind. 
+	By design it does NOT need any user data, an account, browser tracking methods of any kind,
+	cookies, credit card data, etc.<br>
+	There is some kind of ID - the ChannelID - which is changing regulary, is different for 
+	every content-provider/user client combination and can also be manually changed whenever wanted,
+	so it is not easy to track eithter.<br>
+	There is no need to create any user-account for a streaming service using ROSI - 
+	Payments are settled in advance for some seconds of stream automatically by the ROSI-Addon.<br>
+</p>
+<br>
+<p>
+	<h3>How does it work?</h3>
+	ROSI utilizes a second layer technology called "Flash-Channels" on top of the feeless und fast 
+	distributed ledger IOTA. <br>
+	The browser addon is the central piece - every ROSI-enabled service website does request 
+	every payment from the addon - which validates it (and therefor protects the users funds)
+	and if everything seems fine - creates flash-channels as needed and processes payments
+	by communicating with the content-providers payment handling server and signing the needed
+	transactions. The signing and payment process on flash-channels just takes a few seconds 
+	(mostly depending on computer performance) and does not need any interaction with the 
+	IOTA Ledger (the Tangle). Only the creation and closing of the channels need a standard 
+	IOTA transaction each - which takes currently about 2 minutes to confirm (but the provider
+	can also choose to accept some flash-channel transactions before the "funding-transaction"
+	of the channel confirms, to further speed up this process).<br><br>
+	So a typical stream payments request looks something like this:<br>
+	[Website requests payment] -->
+	[Addon: New channel needed? Create / Continue old channel] -->
+	[Payment On Channel] --> [Payment finished]<br><br>
+	It is the task of the website script to request payments and load streaming data from
+	the servers, only payments are handled by ROSI - Addon.<br>
+</p>
+<br>
+<p>
+	<h3>How can that be secure?</h3>
+	First of all: It isn't. - At least it is not 100% secure in the means of not paying 
+	<i>anything</i> to a malicious streaming-provider.<br>
+	BUT: Precautions have been taken to not pay <i>much</i> to any malicous actor:<br>
+	The settings: The user can define maximum stream costs per minute - a central design choice
+	of ROSI - that the Addon accepts without asking the user to confirm. That way an 
+	attacker cannot empty the wallet in short time without the user noticing. <br>
+	The price per minute of a stream must be requested by the provider script in advance of
+	the first payment - and is displayed in the Extension's Popup window at any time.<br>
+	If the price is higher than the before mentioned setting of the plugin - the user has to 
+	confirm the start of the stream manually.<br>
+	The Addon-Icon is also a a very important: Its color indicates the state of ROSI:
+	If it is gray no open website has requested anything from the Addon - It is in standby mode.
+	If it is red, a website has requested to initialize a <i>provider</i> - but no stream. Therefore
+	no stream-payments are possible in this state.
+	If it is orange, a website has requested to initialize a stream - this means under special 
+	conditions <i>one</i> payment is possible (as specified in plugin settings - prepayment) but
+	no continous payments are possible in this state. 
+	If it is green, a website has requested the start of a stream - in this state there are 
+	payments possible - exactly as long as the payments are not exceeding the maximum price per
+	minute (ppm) of the started stream in a time period that is also set by the user 
+	(current default: 2 min).<br>
+	It should be noted here that multiple streams
+	can be in state <i>initialized</i> at the same time, but only one stream at a time can be in 
+	state <i>playing</i>, not even if there are multiple providers registered.<br>
+</p>
+<br>
+<p>
+	<h3>How to Install?</h3>
+	1. Download the lastest extension <a href="http://potato.rosipay.net:10012/plugin">here.</a><br>
+	2. Install by opening <a href="about:addons">about:addons</a> on your Firefox, clicking on the 
+	gear icon top right, clicking "Install Add-on From File" and now selecting the extension 
+	file just downloaded.<br>
+	3. After accpting certain requirements you should see the gray "R" icon. Click on this to get
+	to the main interface / popup of the addon. It will ask you to log in / create a backup account.
+	Note that while it is recommended to backup your wallet / channel - data it is not 
+	necessary in any way to use every feature of ROSI-Payments. You can also host your own 
+	backup server (rosiConserver) - please take a look on the github repository if you want to.<br>
+	4. After funding the ROSI wallet of the plugin with some IOTAs you can go to any ROSI-supported
+	website and start streaming ;)
+	<br><br>
+	If you want to try out the server software, please see the github page.
+</p>
+
+<br><br>
+Additional information will be added here later...
+<br><br>
+<b>ATTENTION: THIS TECHNOLOGY IS A PROTOTYPE - DO NOT USE WITH LARGE AMOUNTS OF IOTA AS THERE MAY
+BE SEVERE BUGS IN THE CODE! AT THIS STAGE IT IS INTENDED FOR DEVELOPERS AND PEOPLE INTERESTED
+IN THE TECHNOLOGY ONLY!</b><br><br>
+
+<p>
+	<h3>Donate</h3>
+	<h4 id="donateLink" 
+		class="rosi_paylink"
+		data-rosi-provider="rosipoc01"
+		data-rosi-pay-server="http://potato.rosipay.net:9000"
+		data-rosi-payment-id="DONATION"
+		data-rosi-alert-finished="false"
+	>Donate using ROSI Payment Link</h4>
+	or
+	<h4>Alternative Standard IOTA Address:</h4>
+	<h5>TSZISBPVYDYEMFRYBFRNTKMKBILOKZRIZDZVUTHKOSHZIGNE9INJQGRBCEEPAEBOHVNHKOFECG9RMMOOWKKMDXBVAD
+	</h5>
+	<h3>Thank you very much for your support!</h3>
+		
+	<script>
+		document.getElementById("donateLink").addEventListener('paymentFinished', 
+			function(event)
+			{
+				let retval = JSON.parse(event.detail);
+				alert(retval.accepted ? 
+						"Payment successful received. Thank you very much for your support!" : 
+						("Error occurred when trying to pay:" + retval.error));
+			});
+	</script>
+</p>
+<br>
+ROSI Developers 2020
+</body>
+
+
+
+
+
+
+

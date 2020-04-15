@@ -1,0 +1,18 @@
+Backend:
+Ein/Ausschalter für Plugin, wenn aus müssen auch alle worker deaktiviert werden (ev. nach einer bestimmten zeit?)
+Auto-Backup: backup zumindest wenn: +nach Erstellen eines Channels (nachdem transaction veröffentlicht wurde), +nach dem manuellen schließen eines channels
+Server/Client system für node urls
+IOTA standard message convertieren von text in trytes, TAG controllieren auf valide Tryte werte
+Frage/ Confirm funktion plugin (ändern plugin symbol, wenn geklickt nur anzeigen von frage + ja/nein)
+
+
+Frontend:
+Tooltips bei Einstellungen
+Anzeige des aktuellen berecheten/bezahlten preis pro Minute ( für letze 5? minuten) oder ab beginn des letzten gestarteten streams
+Anzeige des aktuell verbundenen Providers in hauptseite des Plugins
+Preferences / Einstellungsseite (in Extension manager) schöner machen
+Ein/Ausschalter für Plugin
+Meldungsfenster für allfällige fragen an User: Achtung Sicherheit!: es muss sichergestellt sein dass die nachricht nicht abgefangen oder verändert werden kann durch website-code!! Lösung??
+Information über Tasks die aktuell abgearbeitet werden
+
+
