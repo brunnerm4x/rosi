@@ -1,0 +1,50 @@
+{
+    "apps" : [
+        {
+            "name": "rosi-walletserver",
+            "cwd" : "./rosi-walletserver",
+            "script" : "npm",
+            "args" : "start" 
+        },
+        {
+            "name": "rosi-payserver",
+            "cwd" : "./rosi-payserver",
+            "script" : "npm",
+            "args" : "start" 
+        },
+        {
+            "name": "rosi-conserver",
+            "cwd" : "./rosi-conserver/bin",
+            "script" : "./rosiConserver"
+        },
+        
+        
+        
+        {
+            "name": "rosi-audiostream-streamserver",
+            "cwd" : "./rosi-audiostream",
+            "script" : "npm",
+            "args" : "run start-streamserver" 
+        },
+        {
+            "name": "rosi-audiostream-webserver",
+            "cwd" : "./rosi-audiostream",
+            "script" : "npm",
+            "args" : "run start-webserver" 
+        },
+        
+        
+        {
+            "name": "rosi-faucet-wallet",
+            "cwd" : "./rosi-faucet",
+            "script" : "npm",
+            "args" : "run start-wallet" 
+        },
+        {
+            "name": "rosi-faucet-webserver",
+            "cwd" : "./rosi-faucet",
+            "script" : "npm",
+            "args" : "run start-faucet" 
+        }
+    ]
+}

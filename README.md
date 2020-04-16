@@ -85,3 +85,21 @@ If you want to build the software yourself and play around with it, go to the ro
 instructions in the READMEs.
 
 
+### Automatic Server Setup Script
+
+There is a possibility to set up ROSI-Servers with the help of an interactive install script (`automatic_server_setup.sh`).
+Certain Packages are needed to be installed beforehand: wget, git, nodeJs (npm, node), Qt (qmake, only if you want rosi-conserver), pm2 (via npm, only if you want that process manager).
+
+The script will try to install missing packages using apt & npm. If that fails it is required to install these manually.
+The script is made on/for Debian, so there might be some changes necessary to get it working on other systems.
+
+1. Open Terminal and cd to Folder where you want to install the servers.
+2. Get the automatic install script (you can also clone this repository if you want): `wget https://raw.githubusercontent.com/brunnerm4x/rosi/master/automatic_server_setup.sh`
+3. Start it: `chmod +x automatic_server_setup.sh && ./automatic_server_setup.sh`
+4. It should guide you through the installation process. If you want to configure something, please go to the respective repository readme.
+
+
+
+
+
+
