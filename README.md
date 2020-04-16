@@ -99,7 +99,30 @@ The script is made on/for Debian, so there might be some changes necessary to ge
 4. It should guide you through the installation process. If you want to configure something, please go to the respective repository readme.
 
 
+### Use Firewall
 
+You should definitly use a firewall if you use rosi-walletserver or rosi-faucet-walletserver. Make sure you CANNOT access the walletservers from outside, only the payserver should have access to them.
+Example setup of UFW on Debian:
+1. `sudo apt install ufw`
+2. `sudo ufw allow ssh`		**THIS IS VERY IMPORTANT IF YOU ARE ON A REMOTE SERVER!**
+3. `sudo ufw allow PORT/tcp`	for all ports that you need to access from outside. 
+4. `sudo ufw enable`	Make sure you will not lock yourself out before enabling the firewall!
+5. `sudo ufw status`	Check status and open Ports with this command
+
+Default Ports: 
+* 9000	rosi-payserver
+* 12000 rosi-conserver
+* 10010	rosi-audiostream: streamserver  (manager: 10011)
+* 10012	rosi-audiostream: webserver
+* 10020 rosi-faucet webserver
+
+Set firefall to DENY on following ports:
+* 11000 rosi-walletserver standard
+* 10021	rosi-faucet walletserver
+
+If you have a running IOTA node on your device, you might want to allow access to both neighbouring port (default: 15600) and access for clients (default https: 443, default http: 14265)
+
+Also standard http port (for websites) is 80, you might want to change the main webserver for your device to this port and allow it through the firewall.
 
 
 
