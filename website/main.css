@@ -6,8 +6,12 @@ body{
 	text-align: left;
 }
 
-h1{
+h1, h2{
 	text-align: center;
+}
+
+li{
+	line-height: 1.5em;
 }
 
 a{
@@ -19,5 +23,27 @@ a{
 	color: #FF3B30;
 }
 
+.warning{
+	display:inline-block;
+	border: solid 5px #C9121E;
+	text-align:center;
+	padding: 0.5em;
+}
 
+
+#quicklinks {
+	display:inline-block;
+	float:right;
+	margin: 3em;
+	padding: 2em;
+	padding-top: 1em;
+	background-color:#CCCCCC;
+	color: #363636;
+}
+
+#credit{
+	display:inline-block;
+	float:right;
+	margin-right: 3em;
+}
   
